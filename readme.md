@@ -17,4 +17,3 @@
 
 Contact: Vitali Haranin, vitaly-vitaly@outlook.com. 
 Certified system Administrator, programmer, IT geek for more than 5 years experience in IT sphere
-Building...
