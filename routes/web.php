@@ -11,4 +11,28 @@
 |
 */
 
-Route::get('/','BaseController@getindex');
+/*Route::get('/','BaseController@getindex');*/
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/account', 'AccountController@index')->name('account');
+Route::post('/account','AccountController@postIndex');
+
+Route::get('/gallery', 'HomeController@index')->name('home');
+
+Route::get('/Egypt', 'HomeController@getPhotoFromEgypt');
+
+Route::get('/all','MaintextController@getAll');
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+Route::get('/{url}','MaintextController@getindex');
+
+
+

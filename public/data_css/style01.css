@@ -36,8 +36,40 @@ header {
     text-decoration: none;
 }
 
+.login a {
+    position: relative;
+    top: -30px;
+    vert-align: top;
+    color: grey;
+    text-decoration: none;
+}
+
+.logout a {
+    position: relative;
+    top: -30px;
+    vert-align: top;
+    color: grey;
+    text-decoration: none;
+}
+
+.register a {
+    position: relative;
+    top: -30px;
+    vert-align: top;
+    color: grey;
+    text-decoration: none;
+}
+
 .gallery-menu {
     list-style: none;
+}
+
+.container{
+    margin-left: 45%;
+    margin-right: 55%;
+    display: inline-block;
+    /*display: inline-block;*/
+    /*text-align: center;*/
 }
 
 .side-menu {
@@ -173,8 +205,29 @@ header {
 }
 
 @media all and ( min-width: 0px) and ( max-width: 700px) {
+    header{
+
+        background-repeat: no-repeat;
+    }
+
+    .login a {
+
+        top: -10px;
+
+    }
+
+    .logout a {
+        top: -5px;
+
+    }
+
+    .register a {
+        top: -5px;
+    }
+
     .menuAside li {
         display: block;
+
     }
     .side-menu {
         /*background: aqua;*/
