@@ -26,14 +26,21 @@ class HomeController extends Controller
     public function index()
     {
         $arr = Home::all();
-        $arr2 = Photos::where('album',9)->orderBy('path', 'desc')->take(30)->get();
-        return view('home', compact('arr'), compact('arr2'));
+        //$arr2 = Photos::where('album',9)->orderBy('path', 'desc')->take(30)->get();
+
+        /**/
+        $objs = Photos::where('album',9)->orderBy('id','DESC')->paginate(20);
+
+        return view('home', compact('arr'), compact('objs'));
     }
 
     public function getPhotoFromEgypt()
     {
         $arr = Home::all();
-        $arr2 = Photos::where('album',10)->orderBy('path', 'desc')->take(30)->get();
-        return view('egypt', compact('arr'), compact('arr2'));
+        //$arr2 = Photos::where('album',10)->orderBy('path', 'desc')->take(30)->get();
+
+        $objs = Photos::where('album',10)->orderBy('id','DESC')->paginate(10);
+
+        return view('egypt', compact('arr'), compact('objs'));
     }
 }

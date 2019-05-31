@@ -25,7 +25,7 @@ class AccountController extends Controller
     public function index()
     {
         $arr = Home::all();
-        return view('account',compact('arr'));
+        return view('account', compact('arr'));
     }
 
     // Одиночный запрос
@@ -54,17 +54,26 @@ class AccountController extends Controller
     // По средствам Request
     public function postIndex(GalleryRequest $r)
     {
+        //dd($_FILES);
         /*dd($r['photo-name']);*/
         //dd(Auth::user()->id);
         //dd($r->all());
+        /*Создаем класс на основе рекомендаций Laravel*/
+        $pic = \App::make('App\Libs\Imag')->url($_FILES['picture1']['tmp_name'],null,$_FILES['picture1']['name']);
+        if (!$pic) {
+            $r['picture'] = '';
+        }else{
+            $r['picture'] = $pic;
+        }
         $album_id = Home::where('name', $_POST['album'])->first();
         /*dd($album_id->id);*/
-        $r['user_id'] = (isset(Auth::user()->id) ? Auth::user()->id : "1" );
+        $r['user_id'] = (isset(Auth::user()->id) ? Auth::user()->id : "1");
         $r['catalog_id'] = $album_id->id;
-        $r['picture'] = "";
+        //$r['picture'] = "";
         $r['status'] = "";
         unset($r['_token']);
         Gallery::create($r->all());
+
         return redirect()->back();
     }
 }

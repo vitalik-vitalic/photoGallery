@@ -57,30 +57,13 @@
                 </li>
             @endguest
         </ul>
-        {!! menu('main','bootstrap') !!}
+        {{--{!! menu('main','bootstrap') !!}--}}
     </nav>
 </header>
 <main>
-    <aside class="side-menu">
-        <ul class="gallery-menu">
-            @foreach($arr as $one)
-                <li>
-                    <a href="{{$one->name}}">{{$one->name}}</a>
-                </li>
-            @endforeach
 
-            {{--<li><a href="#">Animals</a></li>
-            <li><a href="#">City</a></li>
-            <li><a href="#">fashion</a></li>
-            <li><a href="#">Nature</a></li>
-            <li><a href="#">Wedding</a></li>
-            <li><a href="#">Macro</a></li>
-            <li><a href="#">People</a></li>
-            <li><a href="#">Retro</a></li>--}}
-        </ul>
-    </aside>
     @yield('content')
-    <div class="gallery-pagination"><a href="#">Previous</a>
+    <div class="gallery-pagination">{{--<a href="#">Previous</a>
         <ul>
             <li><a href="#">1</a></li>
             <li>2</li>
@@ -91,7 +74,8 @@
             <li>7</li>
             <li>8</li>
             <li>9</li>
-        </ul> <a href="#">next</a></div>
+        </ul> <a href="#">next</a></div>--}}
+        <ul>{!!$objs->links()!!}</ul>
     </div>
 </main>
 <footer>
@@ -110,7 +94,7 @@
 </footer>
 </body>
 @section('scripts')
-    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/bootstrap.js')}}"></script>
+    {{--<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap.js')}}"></script>--}}
 @show
 </html>

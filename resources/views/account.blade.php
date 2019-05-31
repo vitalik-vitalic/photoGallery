@@ -9,12 +9,12 @@
 
 </head>
 <body>
-{!! menu('main','bootstrap') !!}
+{{--{!! menu('main','bootstrap') !!}--}}
 
 <div class="container m-t-3">
 
     <h1>Add photo</h1>
-    <form id="parsleyForm" method="post" action="{{asset('account')}}">
+    <form id="parsleyForm" method="post" action="{{asset('account')}}" enctype="multipart/form-data">
         {{--Генерация токена--}}
         {!! csrf_field() !!}
         <label for="name">Название</label>
@@ -36,7 +36,7 @@
         </fieldset>
         <fieldset class="form-group">
             <label for="exampleInputFile">File input</label>
-            <input type="file" class="form-control-file" id="exampleInputFile">
+            <input type="file" name="picture1" class="form-control-file" id="exampleInputFile">
         </fieldset>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
