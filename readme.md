@@ -2,7 +2,7 @@
 
 ###Benefits:
 - PhotoGallery is the modern web site template based on laravel framework.
-- The project was created on computer courses at TrainingCenter in Minsk.
+- The project was created on computer courses at TrainingCenter in Minsk (https://trainingcenter.by/).
 - This template use good css style, javascript and the best HMVC approaches to his creation.
 - Design is also adaptive on many platform such as mobile phones, pad etc.
 
