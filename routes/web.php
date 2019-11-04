@@ -15,18 +15,32 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'lang'], function (){
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/account', 'AccountController@index')->name('account');
-Route::post('/account','AccountController@postIndex');
+Route::get('/users','UserController@getAll');
+Route::get('/users/{id}','UserController@getOne');
+/*Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');*/
 
 Route::get('/gallery', 'HomeController@index')->name('home');
 
 Route::get('/Egypt', 'HomeController@getPhotoFromEgypt');
 
 Route::get('/all','MaintextController@getAll');
+
+Route::post('/ajax/gallery','Ajax\GalleryController@postIndex');
+
+Route::group(['middleware' => 'moderator'], function (){
+    Route::get('/account', 'AccountController@index')->name('account');
+    Route::post('/account','AccountController@postIndex');
+});
+
+Route::group(['middleware' => 'admin'], function (){
+    Route::get('/home/admin', 'HomeController@getAdmin');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

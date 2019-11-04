@@ -1,4 +1,9 @@
 @extends('layouts.site')
+{{--Дополнительный скрипт на странице--}}
+@section('scripts')
+    @parent
+<script type="text/javascript" src="{{asset('js/modal.js')}}"></script>
+@endsection
 @section('content')
     <aside class="side-menu">
         <ul class="gallery-menu">
@@ -17,13 +22,23 @@
             <li><a href="#">People</a></li>
             <li><a href="#">Retro</a></li>--}}
         </ul>
+        {{--@foreach($users as $user)
+            <p>{{$user->name}}</p>
+        @endforeach--}}
+
+        <?php
+            /*foreach ($users as $user)
+                {
+                    echo $user;
+                }*/
+        ?>
     </aside>
     <div class="gallery">
         <div class="gallery-photo">
             <ul>
                 @foreach($objs as $one)
                     <li>
-                        <a href="#">
+                        <a href="#" data-id="{{$one->id}}" class="m_click">
                             @if($one->path)
                             <figure><img src="{{asset('data_img/portrait/'.$one->path)}}" alt="">
                                 <figcaption>{{$one->path}}</figcaption>

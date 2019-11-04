@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
 
     <meta charset="UTF-8">
@@ -18,9 +18,12 @@
         {{--Генерация токена--}}
         {!! csrf_field() !!}
         <label for="name">Название</label>
-        <textarea name="name" id="name" required></textarea><br>
+        <textarea name="name" id="name"></textarea><br>
+        {{--Вывод сообщений об ошибках, предупреждений--}}
         @if($errors->has('name'))
-        <b>{{$errors->first('name')}}</b>
+            <span class="help-block">
+                <e>{{$errors->first('name')}}</e><br>
+            </span>
         @endif
         <label for="body">Описание</label>
         <textarea type="text" name="body" id="body" required></textarea>

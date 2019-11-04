@@ -1,8 +1,13 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@mixin colors($color){
+  color: change-color($color, $hue: hue($color) + 180);
+  /*color: $color + 22;
+  background-color: $color*/
+}
 
-// Variables
-@import 'variables';
+$primary-color: black;
+$color: #777777;
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+body {
+  /*background-color : $primary-color;*/
+  @include colors($color);
+}

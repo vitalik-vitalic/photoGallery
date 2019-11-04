@@ -4,14 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>Template Menu</title>
 
     @section('styles')
+        <link rel="stylesheet" href="/data_css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="{{asset('data_css\style01.css')}}">
+        {{--<link rel="stylesheet" type="text/css" href="{{asset('css\app.css')}}">--}}
         {{--<link rel="stylesheet" href="data_css/bootstrap.css">--}}
     @show
 
-
+    @section('scripts')
+        <script type="text/javascript" src="{{asset('js/jquery-2.1.4.js')}}"></script>
+        <script src="js/jquery-2.1.4.js"></script>
+        <script src="js/parsley.min.js"></script>
+        <script src="js/tether.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/holder/2.9.0/holder.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        {{--<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap.js')}}"></script>--}}
+    @show
 </head>
 
 <body>
@@ -19,13 +31,16 @@
     <a href="{{asset('home')}}"><img src="{{asset('data_img/title.png')}}"></a>
     <nav>
         <ul class="menuAside">
-            <li><a href="{{asset('home')}}"><img src="{{asset('data_img/but1.jpg')}}"></a></li>
+            @foreach($menuAside_objs as $one)
+                <li><a href="{{asset($one->url)}}"><img src="{{asset('data_img/'.$one->img)}}"></a></li>
+            @endforeach
+            {{--<li><a href="{{asset('home')}}"><img src="{{asset('data_img/but1.jpg')}}"></a></li>
             <li><a href="{{asset('home')}}"><img src="{{asset('data_img/but2.jpg')}}"></a></li>
             <li><a href="{{asset('about_me')}}"><img src="{{asset('data_img/but3.jpg')}}"></a></li>
             <li><a href="{{asset('video')}}"><img src="{{asset('data_img/but4.jpg')}}"></a></li>
             <li><a href="{{asset('partners')}}"><img src="{{asset('data_img/but5.jpg')}}"></a></li>
             <li><a href="{{asset('guest-book')}}"><img src="{{asset('data_img/but6.jpg')}}"></a></li>
-            <li><a href="{{asset('contact_me')}}"><img src="{{asset('data_img/but7.jpg')}}"></a></li>
+            <li><a href="{{asset('contact_me')}}"><img src="{{asset('data_img/but7.jpg')}}"></a></li>--}}
             <!-- Authentication Links -->
             @guest
                 <li class="login">
@@ -55,6 +70,33 @@
                         </form>
                     </div>
                 </li>
+                    <li class="dropdown">
+                        @if(isset($_COOKIE['lang']))
+                           <?php if($_COOKIE['lang'] === 'ru'){
+                            //echo 'Hello!';
+                           }else{
+                                //echo 'Hello2!';
+                            }
+                           ?>
+                        @endif
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <img id="imgNavSel" src="https://tattooscalculator.com/img/flag/Rus_40.jpg" alt="..." class="img-thumbnail icon-small">&nbsp;&nbsp;
+                            <span id="lanNavSel">Rus</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu mumu" role="menu">
+                            <li><a id="navFra" href="home/?lang=fr" class="language">
+                                    <img id="imgNavFra" src="https://tattooscalculator.com/img/flag/Fra_40.jpg" alt="France" class="img-thumbnail icon-small">&nbsp;
+                                    <span id="lanNavFra">Française</span>&nbsp;
+                                </a></li>
+                            <li><a id="navEng" href="home/?lang=en" class="language">
+                                    <img id="imgNavEng" src="https://tattooscalculator.com/img/flag/Eng_40.jpg" alt="English" class="img-thumbnail icon-small">&nbsp;
+                                    <span id="lanNavEng">English</span>&nbsp;
+                                </a></li>
+                            <li><a id="navRus" href="home/?lang=ru" class="language">
+                                    <img id="imgNavRus" src="https://tattooscalculator.com/img/flag/Rus_40.jpg" alt="Russia" class="img-thumbnail icon-small">&nbsp;
+                                    <span id="lanNavRus">Русский</span>&nbsp;
+                                </a></li>
+                        </ul>
+                    </li>
             @endguest
         </ul>
         {{--{!! menu('main','bootstrap') !!}--}}
@@ -81,20 +123,21 @@
 <footer>
     <div class="footer-part">
         <ul class="footer-menu">
-            <li><a href="{{asset('home')}}">home</a></li>
+            @foreach($s_objs as $one)
+                {{--<li><a href="{{asset($one->url)}}">{{$one->name}}</a></li>--}}
+                {{--Подключение локализации--}}
+                <li><a href="{{asset($one->url)}}">{{__('menu.menu.'.$one->name)}}</a></li>
+            @endforeach
+            {{--<li><a href="{{asset('home')}}">home</a></li>
             <li><a href="{{asset('gallery')}}">gallery</a></li>
             <li><a href="{{asset('about_me')}}">about</a></li>
             <li><a href="{{asset('video')}}">video</a></li>
             <li><a href="{{asset('partners')}}">partners</a></li>
             <li><a href="{{asset('guest-book')}}">contact</a></li>
-            <li><a href="{{asset('all')}}">siteMap</a></li>
+            <li><a href="{{asset('all')}}">siteMap</a></li>--}}
         </ul>
     </div>
-    <div class="footer-part"><small>CopyR</small></div>
+    <div class="footer-part"><small>CopyR {{$name}}</small></div>
 </footer>
 </body>
-@section('scripts')
-    {{--<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/bootstrap.js')}}"></script>--}}
-@show
 </html>

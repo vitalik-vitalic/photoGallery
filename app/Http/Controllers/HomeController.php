@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // Connect to the model
 use App\Home;
 use App\Photos;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -28,10 +29,13 @@ class HomeController extends Controller
         $arr = Home::all();
         //$arr2 = Photos::where('album',9)->orderBy('path', 'desc')->take(30)->get();
 
+        /*Get all Users*/
+        $users = User::all();
+
         /**/
         $objs = Photos::where('album',9)->orderBy('id','DESC')->paginate(20);
 
-        return view('home', compact('arr'), compact('objs'));
+        return view('home', compact('arr','objs','users'));
     }
 
     public function getPhotoFromEgypt()
@@ -42,5 +46,12 @@ class HomeController extends Controller
         $objs = Photos::where('album',10)->orderBy('id','DESC')->paginate(10);
 
         return view('egypt', compact('arr'), compact('objs'));
+    }
+
+    public function getAdmin()
+    {
+        $users = User::all();
+        //return view('admin', compact('objs'));
+        return response()->json($users);
     }
 }

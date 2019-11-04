@@ -9,6 +9,11 @@
     @section('styles')
         <link rel="stylesheet" type="text/css" href="{{asset('data_css\style01.css')}}">
     @show
+    @section('scripts')
+        <script type="text/javascript" src="{{asset('js/jquery-2.1.4.js')}}"></script>
+        {{--<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap.js')}}"></script>--}}
+    @show
 </head>
 
 <body>
@@ -62,13 +67,18 @@
 <footer>
     <div class="footer-part">
         <ul class="footer-menu">
-            <li><a href="{{asset('home')}}">home</a></li>
+            @foreach($s_objs as $one)
+                {{--<li><a href="{{asset($one->url)}}">{{$one->name}}</a></li>--}}
+                {{--Подключение локализации--}}
+                <li><a href="{{asset($one->url)}}">{{__('menu.menu.'.$one->name)}}</a></li>
+            @endforeach
+            {{--<li><a href="{{asset('home')}}">home</a></li>
             <li><a href="{{asset('gallery')}}">gallery</a></li>
             <li><a href="{{asset('about_me')}}">about</a></li>
             <li><a href="{{asset('video')}}">video</a></li>
             <li><a href="{{asset('partners')}}">partners</a></li>
             <li><a href="{{asset('guest-book')}}">contact</a></li>
-            <li><a href="{{asset('all')}}">siteMap</a></li>
+            <li><a href="{{asset('all')}}">siteMap</a></li>--}}
         </ul>
     </div>
     <div class="footer-part"><small>CopyR</small></div>
